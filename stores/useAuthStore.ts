@@ -25,7 +25,7 @@ export const useAuthStore = defineStore('auth', () => {
     user.value = data.value
   }
 
-  async function login(credentials: Credentials) {
+  async function login(credentials: Credentials, role = "") {
     await useApiFetch( '/sanctum/csrf-cookie');
   
     const login = await useApiFetch('/login', {
@@ -44,7 +44,7 @@ export const useAuthStore = defineStore('auth', () => {
     user.value = null;
   }
 
-  async function register(registrationInfo: RegistrationInfo) {
+  async function register(registrationInfo: RegistrationInfo, role = "") {
     await useApiFetch( '/sanctum/csrf-cookie');
   
     const register = await useApiFetch('/register', {
@@ -58,7 +58,7 @@ export const useAuthStore = defineStore('auth', () => {
     return register;
   }
 
-  async function passwordReset(passwordResetInfo) {
+  async function passwordReset(passwordResetInfo, role = "") {
     await useApiFetch("/sanctum/csrf-cookie");
 
     let apiPath = "/forgot-password";
