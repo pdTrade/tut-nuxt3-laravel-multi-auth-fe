@@ -46,8 +46,13 @@ export const useAuthStore = defineStore('auth', () => {
 
   async function register(registrationInfo: RegistrationInfo, role = "") {
     await useApiFetch( '/sanctum/csrf-cookie');
+
+    let apiPath = "/register";
+    if (!!role) {
+      apiPath = `/${role}${apiPath}`;
+    }
   
-    const register = await useApiFetch('/register', {
+    const register = await useApiFetch(apiPath, {
         method: 'POST',
         body: registrationInfo,
       }

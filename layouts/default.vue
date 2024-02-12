@@ -2,7 +2,7 @@
 const auth = useAuthStore();
 
 const handleLogout = async () => {
-  await auth.logout()
+  await auth.logout();
 };
 </script>
 
@@ -25,15 +25,38 @@ const handleLogout = async () => {
         <NuxtLink class="text-blue-500" to="/register">Register</NuxtLink>
       </li>
       <li class="mr-6">
-        <NuxtLink class="text-blue-500" to="/forgot-password">Forgot Password</NuxtLink>
+        <NuxtLink class="text-blue-500" to="/forgot-password">Rest</NuxtLink>
+      </li>
+      <li class="mr-6">
+        <NuxtLink class="text-blue-500" to="/admin">Admin</NuxtLink>
+      </li>
+      <li class="mr-6">
+        <NuxtLink class="text-blue-500" to="/admin/login">Admin/Login</NuxtLink>
+      </li>
+      <li class="mr-6">
+        <NuxtLink class="text-blue-500" to="/admin/register"
+        >Admin/Register</NuxtLink
+        >
+      </li>
+      <li class="mr-6">
+        <NuxtLink class="text-blue-500" to="/admin/forgot-password"
+        >Admin/Rest</NuxtLink
+        >
       </li>
     </ul>
-    <div>
-      id:{{  auth.user?.id }}
-      name:{{  auth.user?.name }}
-      email:{{  auth.user?.email }}
+    <div v-if="auth.user">
+      <p>一般ログイン</p>
+      <p>{{ auth.user }}</p>
     </div>
-    <button v-if="auth.isLoggedIn" @click="handleLogout" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+    <div v-if="auth.userAdmin">
+      <p>管理ログイン</p>
+      <p>{{ auth.userAdmin }}</p>
+    </div>
+    <button
+        v-if="auth.isLoggedIn"
+        @click="handleLogout"
+        class="rounded bg-red-500 px-4 py-2 font-bold text-white hover:bg-red-700"
+    >
       Logout
     </button>
     <slot />
