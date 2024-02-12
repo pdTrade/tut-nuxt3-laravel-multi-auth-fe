@@ -3,5 +3,6 @@ export default defineNuxtPlugin(async (nuxtApp) => {
 
   // if (!auth.isLoggedIn) {
     await auth.fetchUser();
+    await auth.fetchUser('admin');
   // }
 })

@@ -48,9 +48,9 @@ const handleLogout = async () => {
       <p>一般ログイン</p>
       <p>{{ auth.user }}</p>
     </div>
-    <div v-if="auth.userAdmin">
+    <div v-if="auth.admin">
       <p>管理ログイン</p>
-      <p>{{ auth.userAdmin }}</p>
+      <p>{{ auth.admin }}</p>
     </div>
     <button
         v-if="auth.isLoggedIn"
